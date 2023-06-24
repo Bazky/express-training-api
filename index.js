@@ -3,6 +3,15 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
+const createTrainPayload = {
+  trainExpressName: "Some train name",
+  countryOfOrigin: "Example country",
+  yearOfConstruction: "2137",
+  maxKilometerPerHour: "320",
+  destinationFrom: "Earth",
+  destinationTo: "Moon",
+};
+
 async function fetchTrains() {
   try {
     const response = fetch("./trains.json", {
@@ -10,7 +19,7 @@ async function fetchTrains() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ name: "John" }),
+      body: JSON.stringify(createTrainPayload),
     });
     const result = await response.json();
     console.log("Success:", result);
@@ -20,7 +29,7 @@ async function fetchTrains() {
 }
 
 app.get("/trains", (req, res) => {
-  res.send(fetchTrains());
+  req.send(fetchTrains());
   res.status(500).send("Error fetching trains data");
 });
 
