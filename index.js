@@ -22,12 +22,13 @@ async function fetchTrains() {
 }
 
 app.get("/trains", (req, res) => {
-  res.send(fetchTrains());
+  req.send(fetchTrains());
 });
 
 app.post("/trains", (req, res) => {
-  res.send(createTrainPayload);
+  req.send(createTrainPayload);
 });
+
 app.listen(PORT, () => {
   console.log("Server listening on port 3000");
 });
