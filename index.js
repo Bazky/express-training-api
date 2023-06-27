@@ -34,6 +34,10 @@ app.put("/trains/:id", (req, res) => {
   res.send({ createTrainPayload, id: req.params.id });
 });
 
+app.delete("/trains/:id", (req, resp) => {
+  resp.send({ id: req.params.id });
+});
+
 app.listen(PORT, () => {
   console.log("Server listening on port 3000");
 });
