@@ -3,17 +3,32 @@ const app = express();
 
 const PORT = process.env.PORT || 4000;
 
-async function fetchTrains(data) {
+const createTrainPayload = {
+  trainExpressName: "Some train name",
+  countryOfOrigin: "Example country",
+  yearOfConstruction: "2137",
+  maxKilometerPerHour: "320",
+  destinationFrom: "Earth",
+  destinationTo: "Moon",
+};
+
+async function fetchTrains() {
   try {
     const response = await fetch("./trains.json");
+
     return response.json();
   } catch (error) {
-    console.log("Error");
+    console.log("Error:", error);
   }
 }
-app.get("/trains", (req, res) => {
-  res.send(fetchTrains());
+
+app.get("/trains", async (req, res) => {
+  res.send(await fetchTrains());
   res.status(500).send("Error fetching trains data");
+});
+
+app.post("/trains", (req, res) => {
+  res.send(createTrainPayload);
 });
 
 app.listen(PORT, () => {
