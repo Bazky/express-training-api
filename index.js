@@ -26,9 +26,9 @@ app.get("/trains", async (req, res) => {
   res.send(await fetchTrains());
 });
 
-app.post("/trains", async (req, res) => {
-  req.send(createTrainPayload);
-  res.send(await fetchTrains());
+app.post("/trains", (req, res) => {
+  res.send(createTrainPayload);
+  res.send(fetchTrains());
 });
 
 app.listen(PORT, () => {
