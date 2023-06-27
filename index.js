@@ -15,19 +15,20 @@ const createTrainPayload = {
 async function fetchTrains() {
   try {
     const response = await fetch("./trains.json");
-    response.json.stringfy();
+
     return response.json();
   } catch (error) {
     console.log("Error:", error);
   }
 }
 
-app.get("/trains", (req, res) => {
+app.get("/trains", async (req, res) => {
   res.send(await fetchTrains());
+  req.send(createTrainPayload);
 });
 
-app.post("/trains", (req, res) => {
-  res.send(createTrainPayload); 
+app.post("/trains", async (req, res) => {
+  res.send(await fetchTrains());
 });
 
 app.listen(PORT, () => {
