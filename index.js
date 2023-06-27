@@ -15,19 +15,19 @@ const createTrainPayload = {
 async function fetchTrains() {
   try {
     const response = await fetch("./trains.json");
-
     return response.json();
   } catch (error) {
     console.log("Error:", error);
   }
 }
-JSON.stringify(createTrainPayload);
 
 app.get("/trains", (req, res) => {
-  req.send(fetchTrains());
-  res.status(500).send("Error fetching trains data");
+  res.send(fetchTrains());
 });
 
+app.post("/trains", (req, res) => {
+  res.send(createTrainPayload);
+});
 app.listen(PORT, () => {
   console.log("Server listening on port 3000");
 });
