@@ -24,10 +24,10 @@ async function fetchTrains() {
 
 app.get("/trains", async (req, res) => {
   res.send(await fetchTrains());
-  req.send(createTrainPayload);
 });
 
 app.post("/trains", async (req, res) => {
+  req.send(createTrainPayload);
   res.send(await fetchTrains());
 });
 
