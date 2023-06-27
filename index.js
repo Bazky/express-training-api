@@ -14,19 +14,14 @@ const createTrainPayload = {
 
 async function fetchTrains() {
   try {
-    const response = fetch("./trains.json", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(createTrainPayload),
-    });
-    const result = await response.json();
-    console.log("Success:", result);
+    const response = await fetch("./trains.json");
+
+    return response.json();
   } catch (error) {
-    console.error("Error:", error);
+    console.log("Error:", error);
   }
 }
+JSON.stringify(createTrainPayload);
 
 app.get("/trains", (req, res) => {
   req.send(fetchTrains());
