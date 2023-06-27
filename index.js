@@ -22,11 +22,11 @@ async function fetchTrains() {
 }
 
 app.get("/trains", (req, res) => {
-  req.send(fetchTrains());
+  res.send(await fetchTrains());
 });
 
 app.post("/trains", (req, res) => {
-  req.send(createTrainPayload);
+  res.send(createTrainPayload);
 });
 
 app.listen(PORT, () => {
