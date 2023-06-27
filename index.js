@@ -24,11 +24,11 @@ async function fetchTrains() {
 
 app.get("/trains", async (req, res) => {
   res.send(await fetchTrains());
+  res.status(500).send("Error fetching trains data");
 });
 
 app.post("/trains", (req, res) => {
   res.send(createTrainPayload);
-  res.send(fetchTrains());
 });
 
 app.listen(PORT, () => {
