@@ -31,7 +31,7 @@ app.post("/trains", (req, res) => {
 });
 
 app.put("/trains/:id", (req, res) => {
-  res.send({ createTrainPayload, id: "2" });
+  res.send({ createTrainPayload, id: req.params.id });
 });
 
 app.listen(PORT, () => {
